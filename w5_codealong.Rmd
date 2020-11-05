@@ -77,3 +77,26 @@ Are male chinstrap penguins significantly larger (body mass) than female chinstr
 t.test(chinstraps_m, chinstraps_f, alternative = "greater") #should line up with the order of stuff that you put in
 ```
 
+## One-way ANOVA
+
+### 1. Table of counts by species and sex
+
+```{r}
+penguin_counts <- penguins %>% 
+  count(species, sex)
+penguin_counts #they are over 30 so we think it will work
+
+
+```
+
+Create a subset of only female penguins
+
+```{r}
+penguin_f <- penguins %>% 
+  filter(sex == "female")
+
+ggplot(data = penguin_f, aes(x = flipper_length_mm))+
+  geom_histogram(aes(fill = species)) +
+  facet_wrap(~species)
+```
+
